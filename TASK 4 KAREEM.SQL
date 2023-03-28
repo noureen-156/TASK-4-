@@ -1,0 +1,51 @@
+CREATE DATABASE markt;
+CREATE TABLE Products (
+  product_id INT PRIMARY KEY,
+  product_name VARCHAR(50),
+  price DECIMAL(10,2)
+);
+
+CREATE TABLE Customers (
+  customer_id INT PRIMARY KEY,
+  customer_name VARCHAR(50),
+  email VARCHAR(50)
+);
+
+CREATE TABLE Orders (
+  order_id INT PRIMARY KEY,
+  customer_id INT,
+  product_id INT,
+  quantity INT,
+  FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+  FOREIGN KEY (product_id) REFERENCES Products(product_id)
+); 
+
+
+INSERT INTO Products (product_id, product_name, price) VALUES
+(22, 'Product AC', 10),
+(23, 'Product BT', 15),
+(24, 'Product CP', 20);
+
+INSERT INTO Customers (customer_id, customer_name, email) VALUES
+(5, 'noureen', 'noureen@email.com'),
+(6, 'ahmed', 'ahmed@email.com'),
+(7, 'omer', 'omer@email.com');
+
+INSERT INTO Orders (order_id, customer_id, product_id, quantity) VALUES
+(1, 2, 3, 4),
+(11, 12, 13, 14),
+(21, 22, 23 ,24);
+
+SELECT *
+FROM Orders
+INNER JOIN Customers ON Orders.customer_id = Customers.customer_id;
+
+SELECT *
+FROM Customers
+LEFT JOIN Orders ON Customers.customer_id = Orders.customer_id;
+
+SELECT *
+FROM Orders
+RIGHT JOIN Customers ON Orders.customer_id = Customers.customer_id;
+
+
