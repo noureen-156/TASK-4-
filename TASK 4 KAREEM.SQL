@@ -48,4 +48,37 @@ SELECT *
 FROM Orders
 RIGHT JOIN Customers ON Orders.customer_id = Customers.customer_id;
 
+SELECT *
+FROM Customers
+JOIN Orders ON Customers.customer_id = Orders.customer_id;
+
+SELECT *
+FROM Customers c
+JOIN Products p
+ON c.customer_id = p.product_id;
+
+SELECT *
+FROM  Products p, customers c
+WHERE p.product_id = c.customer_id;
+
+SELECT customer_id,customer_name AS product_id, product_name
+FROM customers c
+JOIN Products p
+ON p.product_id = c.customer_id;
+
+SELECT product_id, product_name
+FROM Products p
+NATURAL JOIN customers c;
+
+SELECT customer_name AS customer, product_name AS product
+FROM customers c
+CROSS JOIN products p
+ORDER BY customer_name;
+
+SELECT customer_name
+FROM customers
+UNION
+SELECT customer_id
+FROM customers;
+
 
